@@ -51,24 +51,24 @@ if [ -z $PORTS_PATH ]; then
 fi
 
 
-echo '{"pkgs":["nano","mono","mediainfo","sqlite3","ca_root_nss","curl"]}' > /tmp/pkg.json
-iocage create --name "${JAIL_NAME}" -p /tmp/pkg.json -r 11.1-RELEASE ip4_addr="${INTERFACE}|${JAIL_IP}/24" defaultrouter="${DEFAULT_GW_IP}" boot="on" host_hostname="${JAIL_NAME}" vnet="${VNET}"
+#echo '{"pkgs":["nano","mono","mediainfo","sqlite3","ca_root_nss","curl"]}' > /tmp/pkg.json
+#iocage create --name "${JAIL_NAME}" -p /tmp/pkg.json -r 11.1-RELEASE ip4_addr="${INTERFACE}|${JAIL_IP}/24" defaultrouter="${DEFAULT_GW_IP}" boot="on" host_hostname="${JAIL_NAME}" vnet="${VNET}"
 
-rm /tmp/pkg.json
+#rm /tmp/pkg.json
 
 mkdir -p ${PORTS_PATH}/ports
 mkdir -p ${PORTS_PATH}/db
-mkdir -p ${POOL_PATH}/media
+#mkdir -p ${POOL_PATH}/media
 
 iocage exec ${JAIL_NAME} mkdir -p ${PORTS_PATH}/ports
 iocage exec ${JAIL_NAME} mkdir -p ${PORTS_PATH}/db
-iocage exec ${JAIL_NAME} mkdir -p ${POOL_PATH}/media
+#iocage exec ${JAIL_NAME} mkdir -p ${POOL_PATH}/media
 iocage exec ${JAIL_NAME} mkdir -p /mnt/configs
 iocage fstab -a ${JAIL_NAME} ${PORTS_PATH}/ports /usr/ports nullfs rw 0 0
 iocage fstab -a ${JAIL_NAME} ${PORTS_PATH}/db /var/db/portsnap nullfs rw 0 0
 
 iocage fstab -a ${JAIL_NAME} ${CONFIGS_PATH} /mnt/configs nullfs rw 0 0
-iocage fstab -a ${JAIL_NAME} ${POOL_PATH}/media /mnt/media nullfs rw 0 0
+#iocage fstab -a ${JAIL_NAME} ${POOL_PATH}/media /mnt/media nullfs rw 0 0
 
 iocage exec ${JAIL_NAME} "if [ -z /usr/ports ]; then portsnap fetch extract; else portsnap auto; fi"
 iocage exec ${JAIL_NAME} -- mkdir -p /tmp/bkup
