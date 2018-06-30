@@ -1,7 +1,11 @@
-JAIL_IP="192.168.5.56"
+JAIL_IP="192.168.5.55"
 DEFAULT_GW_IP="192.168.5.1"
 INTERFACE="igb0"
 VNET="off"
 POOL_PATH="/mnt/v1"
-JAIL_NAME="darr"
+JAIL_NAME="mono"
+SONARR_DATA="sonarrgit"
+RADARR_DATA="radarrgit"
+LIDARR_DATA="lidarrgit"
+SABNZBD_DATA="sabnzbdgit"
 
