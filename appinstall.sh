@@ -76,7 +76,9 @@ sabnzbd_config=${POOL_PATH}/apps/${SABNZBD_DATA}
 
 iocage fstab -a ${JAIL_NAME} ${POOL_PATH}/apps /config nullfs rw 0 0
 iocage fstab -a ${JAIL_NAME} ${POOL_PATH}/torrents /mnt/torrents nullfs rw 0 0
-#iocage fstab -a ${JAIL_NAME} ${CONFIGS_PATH} /mnt/configs nullfs rw 0 0
+#if [ ! -d "/mnt/iocage/jails/${JAIL_NAME}/root/mnt/configs" ]; then
+   iocage fstab -a ${JAIL_NAME} ${CONFIGS_PATH} /mnt/configs nullfs rw 0 0
+#fi
 
 chown media:media $sonarr_config/
 chown media:media $radarr_config/
@@ -144,6 +146,7 @@ iocage exec ${JAIL_NAME} sysrc "lidarr_enable=YES"
 iocage exec ${JAIL_NAME} service lidarr start
 
 echo "lidarr should be available at http://${JAIL_IP}:8686"
+iocage exec ${JAIL_NAME} mkdir -p /usr/local/etc/pkg/repos/
 iocage exec ${JAIL_NAME} cp -f /mnt/configs/FreeBSD.conf /usr/local/etc/pkg/repos/FreeBSD.conf
 iocage exec ${JAIL_NAME} update
 iocage exec ${JAIL_NAME} upgrade
