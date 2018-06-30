@@ -104,6 +104,7 @@ iocage exec ${JAIL_NAME} chown -R media:media /usr/local/share/Radarr /config/ra
 iocage exec ${JAIL_NAME} -- mkdir /usr/local/etc/rc.d
 iocage exec ${JAIL_NAME} cp -f /mnt/configs/radarr /usr/local/etc/rc.d/radarr
 iocage exec ${JAIL_NAME} chmod u+x /usr/local/etc/rc.d/radarr
+iocage exec ${JAIL_NAME} sed -i '' "s/radarrgit/${RADARR_DATA}/" /mnt/configs/radarr
 iocage exec ${JAIL_NAME} sysrc "radarr_enable=YES"
 iocage exec ${JAIL_NAME} service radarr start
 echo "Radarr should be available at http://${JAIL_IP}:7878"
@@ -123,6 +124,7 @@ iocage exec ${JAIL_NAME} chown -R media:media /usr/local/share/NzbDrone /config/
 #iocage exec ${JAIL_NAME} -- mkdir /usr/local/etc/rc.d
 iocage exec ${JAIL_NAME} cp -f /mnt/configs/sonarr /usr/local/etc/rc.d/sonarr
 iocage exec ${JAIL_NAME} chmod u+x /usr/local/etc/rc.d/sonarr
+iocage exec ${JAIL_NAME} sed -i '' "s/sonarrgit/${SONARR_DATA}/" /mnt/configs/sonarr
 iocage exec ${JAIL_NAME} sysrc "sonarr_enable=YES"
 iocage exec ${JAIL_NAME} service sonarr start
 echo "Sonarr should be available at http://${JAIL_IP}:8989"
@@ -137,6 +139,7 @@ iocage exec ${JAIL_NAME} mkdir /usr/local/etc/rc.d
 iocage exec ${JAIL_NAME} cp -f /mnt/configs/lidarr /usr/local/etc/rc.d/lidarr
 
 iocage exec ${JAIL_NAME} chmod u+x /usr/local/etc/rc.d/lidarr
+iocage exec ${JAIL_NAME} sed -i '' "s/lidarrgit/${LIDARR_DATA}/" /mnt/configs/lidarr
 iocage exec ${JAIL_NAME} sysrc "lidarr_enable=YES"
 iocage exec ${JAIL_NAME} service lidarr start
 
@@ -155,6 +158,7 @@ iocage exec ${JAIL_NAME} sysrc "sabnzbd_user=media"
 iocage exec ${JAIL_NAME} sysrc sabnzbd_enable=YES
 iocage exec ${JAIL_NAME} sysrc sabnzbd_conf_dir="/config/${SABNZBD_DATA}"
 iocage exec ${JAIL_NAME} cp -f /mnt/configs/sabnzbd /usr/local/etc/rc.d/sabnzbd
+iocage exec ${JAIL_NAME} sed -i '' "s/sabnzbdgit/${SABNZBD_DATA}/" /mnt/configs/sabnzbd
 iocage restart ${JAIL_NAME}
 iocage exec ${JAIL_NAME} service sabnzbd start
 iocage exec ${JAIL_NAME} service sabnzbd stop
