@@ -13,5 +13,5 @@ Install Sonarr, Radarr, Lidarr and Sabnzbd to the same jail by running
 '''
 ./appinstall.sh
 '''
-### Prerequisites###
+### Prerequisites
 Set the name of the directory for the apps data in the mono-config file.
