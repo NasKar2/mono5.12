@@ -1,6 +1,9 @@
 # mono5.12
 
 Script to create an iocage jail on Freenas 11.1U4 from scratch with Mono 5.12.  
+
+Thanks to chippy in freenas forums for getting mono 5.12 working https://forums.freenas.org/index.php?threads/problem-with-updating-radarr.62447/#post-461427
+
 ### Prerequisites
 Create file mono-config
 
