@@ -33,3 +33,11 @@ Install Sonarr, Radarr, Lidarr and Sabnzbd to the same jail by running
 ```
 ### Prerequisites
 Set the name of the directory for the apps data in the mono-config file.
+
+## Update Jail
+
+### Update an existing iocage jail to Mono 5.12
+
+```
+./update.sh
+```
