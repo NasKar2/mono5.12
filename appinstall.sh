@@ -57,6 +57,26 @@ if [ -z $PORTS_PATH ]; then
   PORTS_PATH="${POOL_PATH}/portsnap"
 fi
 
+if [ -z $SONARR_DATA ]; then
+  echo 'Configuration error: SONARR_DATA must be set'
+  exit 1
+fi
+
+if [ -z $RADARR_DATA ]; then
+  echo 'Configuration error: RADARR_DATA must be set'
+  exit 1
+fi
+
+if [ -z $LIDARR_DATA ]; then
+  echo 'Configuration error: LIDARR_DATA must be set'
+  exit 1
+fi
+
+if [ -z $SABNZBD_DATA ]; then
+  echo 'Configuration error: SABNZBD_DATA must be set'
+  exit 1
+fi
+
 
 #echo '{"pkgs":["nano","mono","mediainfo","sqlite3","ca_root_nss","curl"]}' > /tmp/pkg.json
 #iocage create --name "${JAIL_NAME}" -p /tmp/pkg.json -r 11.1-RELEASE ip4_addr="${INTERFACE}|${JAIL_IP}/24" defaultrouter="${DEFAULT_GW_IP}" boot="on" host_hostname="${JAIL_NAME}" vnet="${VNET}"
@@ -161,6 +181,8 @@ iocage exec ${JAIL_NAME} sysrc "sabnzbd_user=media"
 iocage exec ${JAIL_NAME} sysrc sabnzbd_enable=YES
 iocage exec ${JAIL_NAME} sysrc sabnzbd_conf_dir="/config/${SABNZBD_DATA}"
 iocage exec ${JAIL_NAME} cp -f /mnt/configs/sabnzbd /usr/local/etc/rc.d/sabnzbd
+echo "sabnzbd_data ${SABNZBD_DATA}"
+iocage exec ${JAIL_NAME} sed -i '' "s/sabnzbdgit/${SABNZBD_DATA}/" /usr/local/etc/rc.d/sabnzbd
 iocage exec ${JAIL_NAME} sed -i '' "s/sabnzbdgit/${SABNZBD_DATA}/" /usr/local/etc/rc.d/sabnzbd
 iocage restart ${JAIL_NAME}
 iocage exec ${JAIL_NAME} service sabnzbd start
