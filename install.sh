@@ -64,6 +64,7 @@ iocage exec ${JAIL_NAME} mkdir -p ${PORTS_PATH}/ports
 iocage exec ${JAIL_NAME} mkdir -p ${PORTS_PATH}/db
 iocage exec ${JAIL_NAME} mkdir -p ${POOL_PATH}/media
 iocage exec ${JAIL_NAME} mkdir -p /mnt/configs
+iocage exec ${JAIL_NAME} 'sysrc ifconfig_epair0_name="epair0b"'
 iocage fstab -a ${JAIL_NAME} ${PORTS_PATH}/ports /usr/ports nullfs rw 0 0
 iocage fstab -a ${JAIL_NAME} ${PORTS_PATH}/db /var/db/portsnap nullfs rw 0 0
 
