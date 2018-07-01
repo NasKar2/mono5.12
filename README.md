@@ -6,16 +6,16 @@ Create file mono-config
 
 Edit mono-config file with your network information and directory data name you want to use
 ```
--JAIL_IP="192.168.5.55"
--DEFAULT_GW_IP="192.168.5.1"
--INTERFACE="igb0"
--VNET="off"
--POOL_PATH="/mnt/v1"
--JAIL_NAME="mono"
--SONARR_DATA="sonarrgit"
--RADARR_DATA="radarrgit"
--LIDARR_DATA="lidarrgit"
--SABNZBD_DATA="sabnzbdgit"
+JAIL_IP="192.168.5.55"
+DEFAULT_GW_IP="192.168.5.1"
+INTERFACE="igb0"
+VNET="off"
+POOL_PATH="/mnt/v1"
+JAIL_NAME="mono"
+SONARR_DATA="sonarrgit"
+RADARR_DATA="radarrgit"
+LIDARR_DATA="lidarrgit"
+SABNZBD_DATA="sabnzbdgit"
 ```
 Then run these commands
 ```
