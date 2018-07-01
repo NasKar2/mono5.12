@@ -76,9 +76,7 @@ sabnzbd_config=${POOL_PATH}/apps/${SABNZBD_DATA}
 
 iocage fstab -a ${JAIL_NAME} ${POOL_PATH}/apps /config nullfs rw 0 0
 iocage fstab -a ${JAIL_NAME} ${POOL_PATH}/torrents /mnt/torrents nullfs rw 0 0
-#if [ ! -d "/mnt/iocage/jails/${JAIL_NAME}/root/mnt/configs" ]; then
-   iocage fstab -a ${JAIL_NAME} ${CONFIGS_PATH} /mnt/configs nullfs rw 0 0
-#fi
+iocage fstab -a ${JAIL_NAME} ${CONFIGS_PATH} /mnt/configs nullfs rw 0 0
 
 chown media:media $sonarr_config/
 chown media:media $radarr_config/

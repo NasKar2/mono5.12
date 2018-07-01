@@ -88,5 +88,8 @@ iocage restart ${JAIL_NAME}
 #iocage exec ${JAIL_NAME} pw groupmod media -m media
 #iocage restart ${JAIL_NAME} 
 
+#remove /mnt/configs
+iocage fstab -r ${JAIL_NAME} ${CONFIGS_PATH} /mnt/configs nullfs rw 0 0
+
 # Done!
 echo "Installation complete!"
