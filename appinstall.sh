@@ -130,7 +130,7 @@ iocage exec ${JAIL_NAME} chmod u+x /usr/local/etc/rc.d/radarr
 iocage exec ${JAIL_NAME} sed -i '' "s/radarrdata/${RADARR_DATA}/" /usr/local/etc/rc.d/radarr
 iocage exec ${JAIL_NAME} sysrc "radarr_enable=YES"
 iocage exec ${JAIL_NAME} service radarr start
-echo "Radarr should be available at http://${JAIL_IP}:7878"
+echo "Radarr installed"
 
 
 #iocage exec ${JAIL_NAME} ln -s /usr/local/bin/mono /usr/bin/mono
@@ -150,7 +150,7 @@ iocage exec ${JAIL_NAME} chmod u+x /usr/local/etc/rc.d/sonarr
 iocage exec ${JAIL_NAME} sed -i '' "s/sonarrdata/${SONARR_DATA}/" /usr/local/etc/rc.d/sonarr
 iocage exec ${JAIL_NAME} sysrc "sonarr_enable=YES"
 iocage exec ${JAIL_NAME} service sonarr start
-echo "Sonarr should be available at http://${JAIL_IP}:8989"
+echo "Sonarr installed"
 
 iocage exec ${JAIL_NAME} "fetch https://github.com/lidarr/Lidarr/releases/download/v0.2.0.371/Lidarr.develop.0.2.0.371.linux.tar.gz -o /usr/local/share"
 iocage exec ${JAIL_NAME} "tar -xzvf /usr/local/share/Lidarr.develop.*.linux.tar.gz -C /usr/local/share"
@@ -166,7 +166,7 @@ iocage exec ${JAIL_NAME} sed -i '' "s/lidarrdata/${LIDARR_DATA}/" /usr/local/etc
 iocage exec ${JAIL_NAME} sysrc "lidarr_enable=YES"
 iocage exec ${JAIL_NAME} service lidarr start
 
-echo "lidarr should be available at http://${JAIL_IP}:8686"
+echo "lidarr installed"
 iocage exec ${JAIL_NAME} mkdir -p /usr/local/etc/pkg/repos/
 iocage exec ${JAIL_NAME} cp -f /mnt/configs/FreeBSD.conf /usr/local/etc/pkg/repos/FreeBSD.conf
 
@@ -193,4 +193,9 @@ iocage exec ${JAIL_NAME} sed -i '' -e 's?host = 127.0.0.1?host = 0.0.0.0?g' /con
 iocage exec ${JAIL_NAME} sed -i '' -e 's?download_dir = Downloads/incomplete?download_dir = /mnt/torrents/sabnzbd/incomplete?g' /config/${SABNZBD_DATA}/sabnzbd.ini
 iocage exec ${JAIL_NAME} sed -i '' -e 's?complete_dir = Downloads/complete?complete_dir = /mnt/torrents/sabnzbd/complete?g' /config/${SABNZBD_DATA}/sabnzbd.ini
 iocage exec ${JAIL_NAME} service sabnzbd start
+echo "Sabnzbd installed"
+echo
+echo "Radarr should be available at http://${JAIL_IP}:7878"
+echo "Sonarr should be available at http://${JAIL_IP}:8989"
+echo "lidarr should be available at http://${JAIL_IP}:8686"
 echo "sabnzbd should be available at http://${JAIL_IP}:8080/sabnzbd"
