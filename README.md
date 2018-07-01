@@ -1,6 +1,6 @@
 # mono5.12
 
-Script to create an iocage jail on Freenas 11.1U4 from scratch with Mono 5.12.  
+Script to create an iocage jail on Freenas 11.1U4 from scratch with Mono 5.12. Update and existing jail and install sonarr, radarr, lidarr and sabnzbd.  
 
 Thanks to chippy in freenas forums for getting mono 5.12 working https://forums.freenas.org/index.php?threads/problem-with-updating-radarr.62447/#post-461427
 
@@ -20,6 +20,10 @@ RADARR_DATA="radarrgit"
 LIDARR_DATA="lidarrgit"
 SABNZBD_DATA="sabnzbdgit"
 ```
+## Install Mono 5.12 in fresh Jail
+
+Create an iocage jail with Mono 5.12, nano, mediainfo, sqlite3, ca_root_nss, and curl. These are the dependencies need to install sonarr, radarr, and lidarr.
+
 Then run these commands
 ```
 ./install.sh
@@ -33,3 +37,11 @@ Install Sonarr, Radarr, Lidarr and Sabnzbd to the same jail by running
 ```
 ### Prerequisites
 Set the name of the directory for the apps data in the mono-config file.
+
+## Update Jail
+
+### Update an existing iocage jail to Mono 5.12
+
+```
+./update.sh
+```
