@@ -2,7 +2,8 @@
 
 Script to create an iocage jail on Freenas 11.1U4 from scratch with Mono 5.12.  
 ### Prerequisites
-#Create file mono-config
+Create file mono-config
+
 Edit mono-config file with your network information and directory data name you want to use
 ```
 -JAIL_IP="192.168.5.55"
