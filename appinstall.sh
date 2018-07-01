@@ -134,7 +134,7 @@ iocage exec ${JAIL_NAME} "tar -xzvf /usr/local/share/Lidarr.develop.*.linux.tar.
 iocage exec ${JAIL_NAME} rm /usr/local/share/Lidarr.develop.0.2.0.371.linux.tar.gz
 #iocage exec ${JAIL_NAME} "pw user add lidarr -c lidarr -u 353 -d /nonexistent -s /usr/bin/nologin"
 iocage exec ${JAIL_NAME} chown -R media:media /usr/local/share/Lidarr /config/lidarr
-iocage exec ${JAIL_NAME} mkdir /usr/local/etc/rc.d
+#iocage exec ${JAIL_NAME} mkdir /usr/local/etc/rc.d
 
 iocage exec ${JAIL_NAME} cp -f /mnt/configs/lidarr /usr/local/etc/rc.d/lidarr
 
@@ -146,10 +146,10 @@ iocage exec ${JAIL_NAME} service lidarr start
 echo "lidarr should be available at http://${JAIL_IP}:8686"
 iocage exec ${JAIL_NAME} mkdir -p /usr/local/etc/pkg/repos/
 iocage exec ${JAIL_NAME} cp -f /mnt/configs/FreeBSD.conf /usr/local/etc/pkg/repos/FreeBSD.conf
-iocage exec ${JAIL_NAME} update
-iocage exec ${JAIL_NAME} upgrade
+
+iocage exec ${JAIL_NAME} pkg upgrade -y
 iocage restart ${JAIL_NAME}
-iocage exec ${JAIL_NAME} pkg install sabnzbdplus
+iocage exec ${JAIL_NAME} pkg install -y sabnzbdplus
 iocage exec ${JAIL_NAME} ln -s /usr/local/bin/python2.7 /usr/bin/python
 iocage exec ${JAIL_NAME} ln -s /usr/local/bin/python2.7 /usr/bin/python2
 
