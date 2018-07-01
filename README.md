@@ -22,7 +22,7 @@ SABNZBD_DATA="sabnzbdgit"
 ```
 ## Install Mono 5.12 in fresh Jail
 
-### Create an iocage jail with Mono 5.12, nano, mediainfo, sqlite3, ca_root_nss, and curl. These are the dependencies need to install sonarr, radarr, and lidarr.
+Create an iocage jail with Mono 5.12, nano, mediainfo, sqlite3, ca_root_nss, and curl. These are the dependencies need to install sonarr, radarr, and lidarr.
 
 Then run these commands
 ```
