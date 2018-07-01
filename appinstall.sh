@@ -68,11 +68,13 @@ fi
    mkdir -p ${POOL_PATH}/apps/${RADARR_DATA}
    mkdir -p ${POOL_PATH}/apps/${LIDARR_DATA}
    mkdir -p ${POOL_PATH}/apps/${SABNZBD_DATA}
+echo "mkdir -p '${POOL_PATH}/apps/${SONARR_DATA}'"
 #fi
 sonarr_config=${POOL_PATH}/apps/${SONARR_DATA}
 radarr_config=${POOL_PATH}/apps/${RADARR_DATA}
 lidarr_config=${POOL_PATH}/apps/${LIDARR_DATA}
 sabnzbd_config=${POOL_PATH}/apps/${SABNZBD_DATA}
+echo "sonar_config $sonarr_config"
 
 iocage fstab -a ${JAIL_NAME} ${POOL_PATH}/apps /config nullfs rw 0 0
 iocage fstab -a ${JAIL_NAME} ${POOL_PATH}/torrents /mnt/torrents nullfs rw 0 0
@@ -83,10 +85,10 @@ chown media:media $radarr_config/
 chown media:media $lidarr_config/
 chown media:media $sabnzbd_config/
 
-#iocage exec ${JAIL_NAME} chown media:media /config/sonarr
-#iocage exec ${JAIL_NAME} chown media:media /config/radarr
-#iocage exec ${JAIL_NAME} chown media:media /config/lidarr
-#iocage exec ${JAIL_NAME} chown media:media /config/sabnzbd
+#iocage exec ${JAIL_NAME} chown media:media /config/${SONARR_DATA}
+#iocage exec ${JAIL_NAME} chown media:media /config/${RADARR_DATA}
+#iocage exec ${JAIL_NAME} chown media:media /config/${LIDARR_DATA}
+#iocage exec ${JAIL_NAME} chown media:media /config/${SABNZBD_DATA}
 
 iocage exec ${JAIL_NAME} mkdir -p /mnt/torrents/sabnzbd/incomplete
 iocage exec ${JAIL_NAME} mkdir -p /mnt/torrents/sabnzbd/complete
@@ -100,7 +102,7 @@ pw groupadd -n media -g 8675309
 pw groupmod media -m media
 
 
-iocage exec ${JAIL_NAME} chown -R media:media /usr/local/share/Radarr /config/radarr
+iocage exec ${JAIL_NAME} chown -R media:media /usr/local/share/Radarr /config/${RADARR_DATA}
 iocage exec ${JAIL_NAME} -- mkdir /usr/local/etc/rc.d
 iocage exec ${JAIL_NAME} cp -f /mnt/configs/radarr /usr/local/etc/rc.d/radarr
 iocage exec ${JAIL_NAME} chmod u+x /usr/local/etc/rc.d/radarr
@@ -120,7 +122,7 @@ iocage exec ${JAIL_NAME} -- rm /usr/local/share/NzbDrone.master.tar.gz
 #pw groupmod GROUP -m USER
 
 
-iocage exec ${JAIL_NAME} chown -R media:media /usr/local/share/NzbDrone /config/sonarr
+iocage exec ${JAIL_NAME} chown -R media:media /usr/local/share/NzbDrone /config/${SONARR_DATA}
 #iocage exec ${JAIL_NAME} -- mkdir /usr/local/etc/rc.d
 iocage exec ${JAIL_NAME} cp -f /mnt/configs/sonarr /usr/local/etc/rc.d/sonarr
 iocage exec ${JAIL_NAME} chmod u+x /usr/local/etc/rc.d/sonarr
@@ -133,7 +135,7 @@ iocage exec ${JAIL_NAME} "fetch https://github.com/lidarr/Lidarr/releases/downlo
 iocage exec ${JAIL_NAME} "tar -xzvf /usr/local/share/Lidarr.develop.*.linux.tar.gz -C /usr/local/share"
 iocage exec ${JAIL_NAME} rm /usr/local/share/Lidarr.develop.0.2.0.371.linux.tar.gz
 #iocage exec ${JAIL_NAME} "pw user add lidarr -c lidarr -u 353 -d /nonexistent -s /usr/bin/nologin"
-iocage exec ${JAIL_NAME} chown -R media:media /usr/local/share/Lidarr /config/lidarr
+iocage exec ${JAIL_NAME} chown -R media:media /usr/local/share/Lidarr /config/${LIDARR_DATA}
 #iocage exec ${JAIL_NAME} mkdir /usr/local/etc/rc.d
 
 iocage exec ${JAIL_NAME} cp -f /mnt/configs/lidarr /usr/local/etc/rc.d/lidarr
