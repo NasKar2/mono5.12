@@ -15,10 +15,10 @@ INTERFACE="igb0"
 VNET="off"
 POOL_PATH="/mnt/v1"
 JAIL_NAME="mono"
-SONARR_DATA="sonarrgit"
-RADARR_DATA="radarrgit"
-LIDARR_DATA="lidarrgit"
-SABNZBD_DATA="sabnzbdgit"
+SONARR_DATA="sonarrdata"
+RADARR_DATA="radarrdata"
+LIDARR_DATA="lidarrdata"
+SABNZBD_DATA="sabnzbddata"
 ```
 ## Install Mono 5.12 in fresh Jail
 
