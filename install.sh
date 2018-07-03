@@ -16,6 +16,7 @@ VNET="off"
 POOL_PATH=""
 JAIL_NAME="mono"
 PORTS_PATH=""
+MEDIA_LOCATION=""
 
 SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "$SCRIPT")
@@ -46,6 +47,11 @@ if [ -z $POOL_PATH ]; then
   exit 1
 fi
 
+if [ -z $MEDIA_LOCATION ]; then
+  echo 'Configuration error: MEDIA_LOCATION must be set'
+  exit 1
+fi
+
 if [ -z $PORTS_PATH ]; then
   PORTS_PATH="${POOL_PATH}/portsnap"
 fi
@@ -58,18 +64,18 @@ rm /tmp/pkg.json
 
 mkdir -p ${PORTS_PATH}/ports
 mkdir -p ${PORTS_PATH}/db
-mkdir -p ${POOL_PATH}/media
+mkdir -p ${POOL_PATH}/${MEDIA_LOCATION}
 
-iocage exec ${JAIL_NAME} mkdir -p ${PORTS_PATH}/ports
-iocage exec ${JAIL_NAME} mkdir -p ${PORTS_PATH}/db
-iocage exec ${JAIL_NAME} mkdir -p ${POOL_PATH}/media
+#iocage exec ${JAIL_NAME} mkdir -p ${PORTS_PATH}/ports
+#iocage exec ${JAIL_NAME} mkdir -p ${PORTS_PATH}/db
+#iocage exec ${JAIL_NAME} mkdir -p ${POOL_PATH}/${MEDIA_LOCATION}
 iocage exec ${JAIL_NAME} mkdir -p /mnt/configs
 iocage exec ${JAIL_NAME} 'sysrc ifconfig_epair0_name="epair0b"'
 iocage fstab -a ${JAIL_NAME} ${PORTS_PATH}/ports /usr/ports nullfs rw 0 0
 iocage fstab -a ${JAIL_NAME} ${PORTS_PATH}/db /var/db/portsnap nullfs rw 0 0
 
 iocage fstab -a ${JAIL_NAME} ${CONFIGS_PATH} /mnt/configs nullfs rw 0 0
-iocage fstab -a ${JAIL_NAME} ${POOL_PATH}/media /mnt/media nullfs rw 0 0
+iocage fstab -a ${JAIL_NAME} ${POOL_PATH}/${MEDIA_LOCATION} /mnt/media nullfs rw 0 0
 
 iocage exec ${JAIL_NAME} "if [ -z /usr/ports ]; then portsnap fetch extract; else portsnap auto; fi"
 iocage exec ${JAIL_NAME} -- mkdir -p /tmp/bkup

@@ -19,6 +19,8 @@ SONARR_DATA="sonarrdata"
 RADARR_DATA="radarrdata"
 LIDARR_DATA="lidarrdata"
 SABNZBD_DATA="sabnzbddata"
+MEDIA_LOCATION="media"
+TORRENT_LOCATION="torrents"
 ```
 ## Install Mono 5.12 in fresh Jail
 
