@@ -7,7 +7,7 @@ Thanks to chippy in freenas forums for getting mono 5.12 working https://forums.
 ### Prerequisites
 Create file mono-config
 
-Edit mono-config file with your network information and directory data name you want to use
+Edit mono-config file with your network information and directory data name you want to use and location of your media files and torrents.
 ```
 JAIL_IP="192.168.5.55"
 DEFAULT_GW_IP="192.168.5.1"
@@ -20,7 +20,7 @@ RADARR_DATA="radarrdata"
 LIDARR_DATA="lidarrdata"
 SABNZBD_DATA="sabnzbddata"
 MEDIA_LOCATION="media"
-TORRENT_LOCATION="torrents"
+TORRENTS_LOCATION="torrents"
 ```
 ## Install Mono 5.12 in fresh Jail
 
