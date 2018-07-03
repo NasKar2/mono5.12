@@ -20,7 +20,7 @@ SONARR_DATA=""
 RADARR_DATA=""
 LIDARR_DATA=""
 SABNZBD_DATA=""
-
+TORRENTS_LOCATION=""
 
 SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "$SCRIPT")
@@ -77,6 +77,11 @@ if [ -z $SABNZBD_DATA ]; then
   exit 1
 fi
 
+if [ -z $TORRENTS_LOCATION ]; then
+  echo 'Configuration error: TORRENTS_LOCATION must be set'
+  exit 1
+fi
+
 
 #echo '{"pkgs":["nano","mono","mediainfo","sqlite3","ca_root_nss","curl"]}' > /tmp/pkg.json
 #iocage create --name "${JAIL_NAME}" -p /tmp/pkg.json -r 11.1-RELEASE ip4_addr="${INTERFACE}|${JAIL_IP}/24" defaultrouter="${DEFAULT_GW_IP}" boot="on" host_hostname="${JAIL_NAME}" vnet="${VNET}"
@@ -88,6 +93,7 @@ fi
    mkdir -p ${POOL_PATH}/apps/${RADARR_DATA}
    mkdir -p ${POOL_PATH}/apps/${LIDARR_DATA}
    mkdir -p ${POOL_PATH}/apps/${SABNZBD_DATA}
+   mkdir -p ${POOL_PATH}/${TORRENTS_LOCATION}
 echo "mkdir -p '${POOL_PATH}/apps/${SONARR_DATA}'"
 echo "mkdir -p '${POOL_PATH}/apps/${SABNZBD_DATA}'"
 #fi
@@ -98,7 +104,7 @@ sabnzbd_config=${POOL_PATH}/apps/${SABNZBD_DATA}
 echo "sonar_config $sonarr_config"
 
 iocage fstab -a ${JAIL_NAME} ${POOL_PATH}/apps /config nullfs rw 0 0
-iocage fstab -a ${JAIL_NAME} ${POOL_PATH}/torrents /mnt/torrents nullfs rw 0 0
+iocage fstab -a ${JAIL_NAME} ${POOL_PATH}/${TORRENTS_LOCATION} /mnt/torrents nullfs rw 0 0
 iocage fstab -a ${JAIL_NAME} ${CONFIGS_PATH} /mnt/configs nullfs rw 0 0
 
 chown media:media $sonarr_config/
